@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "author": "Ilyas Toumlilt <ilyas@toumlilt.com>",
-  "description": "A Markdown collaborative Editor React Component, to demonstrate the Concordant Platform",
+  "description": "React Typescript CRDT based Collaborative Markdown Editor",
   "homepage": "/",
   "private": true,
   "main": "./dist/main.js",
@@ -13,10 +13,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.inria.fr/concordant/software/c-markdown-editor.git"
+    "url": "git+ssh://git@github.com:ilyasToumlilt/crdt-md-editor.git"
   },
   "bugs": {
-    "url": "https://gitlab.inria.fr/concordant/software/c-markdown-editor/-/issues"
+    "url": "https://github.com/ilyasToumlilt/crdt-md-editor/issues"
   },
   "dependencies": {
     "slate": "^0.59.0",

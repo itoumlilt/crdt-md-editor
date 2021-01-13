@@ -1,6 +1,6 @@
-# C-MD-Editor
+# CRDT-MD-Editor
 
-A collaborative Markdown Editor React Component, to demonstrate the Concordant Platform.
+React Typescript CRDT based Collaborative Markdown Editor
 
 ## Available Scripts
 
