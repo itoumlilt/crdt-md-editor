@@ -13,17 +13,17 @@ import { Slate, Editable, withReact, ReactEditor } from "slate-react";
 
 //const DEFAULT_VALUE: string = "Welcome to Concordant Mardown Editor!";
 
-export interface ICMDEdConfig {
+export interface ICollabMarkdownEditorConfig {
   /**
    * Can be used to make Markdown Editor focus itself on initialization.
    */
   autoFocus?: boolean;
 }
-export interface CMDEdProps {
+export interface ICollabMarkdownEditorProps {
   value?: string; // set a default value (or DEFAULT_VALUE is unbefined)
 }
 
-export interface CMDEdState {
+export interface ICollabMarkdownEditorState {
   value: string;
   //uid: number;
   //timestamp: number;
@@ -214,7 +214,7 @@ const initialValue = [
   },
 ];
 
-export default function CMDEd(props: CMDEdProps) {
+export default function CollabMarkdownEditor(props: ICollabMarkdownEditorProps) {
   const [value, setValue] = useState<Node[]>(initialValue);
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const editor = useMemo(

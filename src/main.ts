@@ -5,8 +5,8 @@
  * 
  * index.tsc is used for internal standalone execution.
  */
-import CMDEd from "./Components/CMDEd";
+import CollabMarkdownEditor from "./Components/CollabMarkdownEditor";
 
 export {
-  CMDEd
+  CollabMarkdownEditor
 };

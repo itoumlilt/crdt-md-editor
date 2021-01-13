@@ -1,10 +1,10 @@
 import './App.css';
-import CMDEd from './Components/CMDEd';
+import CollabMarkdownEditor from './Components/CollabMarkdownEditor';
 
 function App() {
   return (
     <div className="App">
-      <CMDEd />
+      <CollabMarkdownEditor />
     </div>
   );
 }
