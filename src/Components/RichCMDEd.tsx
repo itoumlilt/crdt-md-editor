@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Node } from "slate";
-import CannerEditor from "canner-slate-editor";
 
 export interface RichMDEdProps {
   value?: string; // set a default value (or DEFAULT_VALUE is unbefined)
@@ -51,7 +50,9 @@ export default function RichMDEd(props: RichMDEdProps) {
   const [value, setValue] = useState<Node[]>(initialValue);
   return (
     <div style={{ margin: "20px" }}>
-      <CannerEditor value={value} onChange={(value) => setValue(value)} />
+      {//TODO: Breakpoint
+      }
+      Coming Soon...
     </div>
   );
 }
