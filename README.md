@@ -1,46 +1,99 @@
 # CRDT-MD-Editor
 
-React Typescript CRDT based Collaborative Markdown Editor
+[![License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 
-## Available Scripts
+React Typescript CRDT based Collaborative Markdown Editor.
 
-In the project directory, you can run:
+This app aims to show a collaborative text editing application using two eventual consitency backends: revision-based and CRDT-based.
+This demo shows that with a revision based approach, the user
+loses updates, either if updates are executed concurrently online, or if
+multiple users edit the document offline. To have an adequate semantics, the
+user needs to provide custom, non-trivial, code to merge the updates executed
+by each user. With the CRDT-based backend, update convergence is available
+out-of-the-box.
 
-### `yarn start`
+The current demo is implemented on top of PouchDB which offers replication and
+offline support, but can be easily ported on other equivalent backends.
+Later we will implement our backend without any third-party dependencies.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Setup guide
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+0.**Requirements**
 
-### `yarn test`
+For the next steps, you will need the following software:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Make sure you have the latest version of Node.js: [see official installation guide](https://nodejs.org/en/download/);
+- The project uses Git to download some required dependencies: [follow the official install guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-### `yarn build`
+1.**Install Project dependencies**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Go to project root directory and:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```shell
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Run the standalone application
 
-### `yarn eject`
+After, following Setup Guide above, running the app is as easy as:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```shell
+npm start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## (BETA/WIP) Use CRDT-MD-Editor React Component in another project
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The React Component is built to be easily included in other web apps,
+you may want to simply contain the editor inside your website or blog.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1.**Install the npm package to your React project**
 
-## Learn More
+```shell
+npm install crdt-md-editor --save
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2.**Choose the Editor instance you want to use**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+CRDT-MD-Editor offers two possibilities,
+
+- `CollabMarkdownEditor` Component: The lightweight version with minimal UI, and minimal JS backend. The easiest way to include a collaborative markdown textarea to your app;
+- `RichCollabMarkdownEditor` Component: The complete version with Rich UI, buttons toolbar, configurable UI and backend API ported to the Edge App.
+
+3.**Include the component in your .tsx and enjoy!**
+
+```typescript
+import './App.css';
+import CollabMarkdownEditor from './Components/CollabMarkdownEditor';
+
+function App() {
+  return (
+    <div className="App">
+      <CollabMarkdownEditor />
+    </div>
+  );
+}
+
+export default App;
+```
+
+## (BETA/WIP) Build for server production-ready deployment
+
+```shell
+npm install
+
+# and enable CORS in CouchDB using the fetched script
+# If your CouchDB instance is password protected, use -u <user> -p <password> options:
+node node_modules/add-cors-to-couchdb/bin.js
+
+# Then build the app using:
+REACT_APP_SERVERURL="http://${MY_SERVER_ADDR}:5984/${MY_DBNAME}" \
+REACT_APP_OFFLINE_FIRST=any \
+npm run build
+# Note: REACT_APP_OFFLINE_FIRST=any Enables Service Workers to run application offline
+```
+
+The `build` directory will now contain a static JS you can deploy in your server.
+
+## Replication support
+
+If you want to run with cross-replica synchronization, just run a CouchDB Server, [see CouchDB's installation guide](https://docs.couchdb.org/en/stable/install/index.html)
