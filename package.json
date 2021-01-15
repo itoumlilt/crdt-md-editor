@@ -5,7 +5,7 @@
   "author": "Ilyas Toumlilt <ilyas@toumlilt.com>",
   "description": "React Typescript CRDT based Collaborative Markdown Editor",
   "homepage": "/",
-  "private": true,
+  "private": false,
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
   "files": [
