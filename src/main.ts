@@ -29,7 +29,6 @@ SOFTWARE.
  * index.tsc is used for internal standalone execution.
  */
 import CollabMarkdownEditor from "./Components/CollabMarkdownEditor";
+import RichCollabMarkdownEditor from "./Components/RichCollabMarkdownEditor";
 
-export {
-  CollabMarkdownEditor
-};
+export { CollabMarkdownEditor, RichCollabMarkdownEditor };

@@ -1,10 +1,10 @@
 import './App.css';
-import CollabMarkdownEditor from './Components/CollabMarkdownEditor';
+import RichCollabMarkdownEditor from './Components/RichCollabMarkdownEditor';
 
 function App() {
   return (
     <div className="App">
-      <CollabMarkdownEditor />
+      <RichCollabMarkdownEditor />
     </div>
   );
 }

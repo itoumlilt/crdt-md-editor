@@ -1,5 +1,19 @@
-import React, { useState } from "react";
-import { Node } from "slate";
+import React, { useMemo, useState } from "react";
+import { createEditor, Node } from "slate";
+import { withHistory } from "slate-history";
+import { Slate, withReact } from "slate-react";
+import {
+  ParagraphPlugin,
+  BoldPlugin,
+  EditablePlugins,
+  ItalicPlugin,
+  UnderlinePlugin,
+  pipe,
+  SlateDocument,
+} from "@udecode/slate-plugins";
+import {
+  options,
+} from '../config/demo/initialValues';
 
 export interface RichMDEdProps {
   value?: string; // set a default value (or DEFAULT_VALUE is unbefined)
@@ -8,51 +22,39 @@ export interface RichMDEdProps {
 /**
  * An init value for the demo
  */
-const initialValue = [
+const initialValue: Node[] = [
   {
-    type: "paragraph",
+    type: options.p.type,
     children: [
       {
-        text:
-          'The editor gives you full control over the logic you can add. For example, it\'s fairly common to want to add markdown-like shortcuts to editors. So that, when you start a line with "> " you get a blockquote that looks like this:',
-      },
-    ],
-  },
-  {
-    type: "block-quote",
-    children: [{ text: "A wise quote." }],
-  },
-  {
-    type: "paragraph",
-    children: [
-      {
-        text:
-          'Order when you start a line with "## " you get a level-two heading, like this:',
-      },
-    ],
-  },
-  {
-    type: "heading-two",
-    children: [{ text: "Try it out!" }],
-  },
-  {
-    type: "paragraph",
-    children: [
-      {
-        text:
-          'Try it out for yourself! Try starting a new line with ">", "-", or "#"s.',
+        text: "This text is bold, italic and underlined",
+        [options.bold.type]: true,
+        [options.italic.type]: true,
+        [options.underline.type]: true,
       },
     ],
   },
 ];
 
+const plugins = [
+  ParagraphPlugin(),
+  BoldPlugin(),
+  ItalicPlugin(),
+  UnderlinePlugin(),
+];
+
+const withPlugins = [withReact, withHistory] as const;
+
 export default function RichMDEd(props: RichMDEdProps) {
   const [value, setValue] = useState<Node[]>(initialValue);
+  const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
   return (
-    <div style={{ margin: "20px" }}>
-      {//TODO: Breakpoint
-      }
-      Coming Soon...
-    </div>
+    <Slate
+      editor={editor}
+      value={value}
+      onChange={(newValue) => setValue(newValue as SlateDocument)}
+    >
+      <EditablePlugins plugins={plugins} placeholder="Enter some text..." />
+    </Slate>
   );
 }
