@@ -20,23 +20,8 @@ import {
     DEFAULTS_TABLE,
     DEFAULTS_TODO_LIST,
     DEFAULTS_UNDERLINE,
-    ELEMENT_H1,
-    ELEMENT_H2,
-    ELEMENT_H3,
-    ELEMENT_H4,
-    ELEMENT_H5,
-    ELEMENT_H6,
     setDefaults,
   } from '@udecode/slate-plugins';
-  
-  export const headingTypes = [
-    ELEMENT_H1,
-    ELEMENT_H2,
-    ELEMENT_H3,
-    ELEMENT_H4,
-    ELEMENT_H5,
-    ELEMENT_H6,
-  ];
   
   export const options = {
     ...setDefaults(DEFAULTS_PARAGRAPH, {}),
