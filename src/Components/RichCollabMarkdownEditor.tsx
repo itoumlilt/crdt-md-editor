@@ -89,7 +89,8 @@ import { createEditor, Node } from "slate";
 import { withHistory } from "slate-history";
 import { Slate, withReact } from "slate-react";
 import { headingTypes } from "../config/types";
-import { options } from "../config/demo/initialValues";
+import { autoformatRules } from '../config/autoformatRules';
+import { options, optionsResetBlockTypes } from "../config/defaults";
 
 export interface RichMDEdProps {
   value?: string; // set a default value (or DEFAULT_VALUE is unbefined)
