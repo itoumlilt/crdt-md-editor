@@ -71,7 +71,6 @@ import {
   ToolbarLink,
   ToolbarList,
   ToolbarMark,
-  ToolbarSearchHighlight,
   UnderlinePlugin,
   useMention,
   withAutoformat,
@@ -100,6 +99,7 @@ import {
   initialValuePreview,
 } from "../config/demo/richDemoConfig";
 import { MENTIONABLES } from "../config/mentionables";
+import { InputSearchHighlight } from "./Widgets/InputSearchHighlight";
 
 export interface RichMDEdProps {
   value?: string; // set a default value (or DEFAULT_VALUE is unbefined)
@@ -224,7 +224,7 @@ export default function RichMDEd(props: RichMDEdProps) {
           onChangeMention(editor);
         }}
       >
-        <ToolbarSearchHighlight icon={Search} setSearch={setSearchHighlight} />
+        <InputSearchHighlight icon={Search} setSearch={setSearchHighlight} />
         <HeadingToolbar styles={{ root: { flexWrap: "wrap" } }}>
           {/* Elements */}
           <ToolbarElement type={options.h1.type} icon={<LooksOne />} />
